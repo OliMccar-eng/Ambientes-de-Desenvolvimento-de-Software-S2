@@ -1,0 +1,48 @@
+Ambientes de Desenvolvimento de Software
+Nome: Francisco Ivanildo Barbosa Gomes
+
+
+1. CRIAÇÃO E EDIÇÃO DE ARQUIVOS NO TERMINAL
+
+- Criar arquivo vazio no PowerShell (Windows):
+  New-Item Dockerfile
+  New-Item meu_script.py
+  New-Item anotacoes.txt
+
+- Criar arquivo vazio no Linux/macOS (Bash/Zsh):
+  touch meu_script.py
+
+- Abrir arquivo no VS Code direto pelo terminal:
+  code .\Dockerfile
+
+
+2. CONTEÚDO DO ARQUIVO DOCKERFILE
+
+FROM python:3.11-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+EXPOSE 5000
+CMD ["python", "app.py"]
+
+
+3. COMANDOS DOCKER CLI NO TERMINAL (Questão 2)
+
+a) Construir a imagem chamada meu-sistema com tag 1.0 na pasta atual:
+   docker build -t meu-sistema:1.0 .
+
+b) Criar e executar o container sistema-web em segundo plano na porta 8080:
+   docker run -d --name sistema-web -p 8080:5000 meu-sistema:1.0
+
+c) Listar apenas os containers em execução:
+   docker ps
+
+d) Visualizar os logs do container sistema-web:
+   docker logs sistema-web
+
+e) Parar o container sistema-web:
+   docker stop sistema-web
+
+f) Remover o container sistema-web após ser parado:
+   docker rm sistema-web
